@@ -2,11 +2,12 @@
 # See license in readme
 # Developed by Ariel Mordoch
 # Requires the tweepy library. https://github.com/tweepy/tweepy
+# Intended to be called by another program/script
 
-# Importing everything seems to be the only way I can get the authentication to work for function calls.
+# Importing everything seems to be the only way I can get the authentication to work for api calls.
 from tweepy import *
-import sys
-import time
+from sys import exit
+from time import sleep
 # OAuth stuff first. Add your API keys below.
 consumer_key = ''
 consumer_key_secret = ''
@@ -19,20 +20,19 @@ api = API(auth)
 # print api.me().name
 
 def tweet(text):
+    """Really no need for this function, but I defined it anyway."""
     api.update_status(text)
 
 def send_dm(user, screenname, userid, text):
+    """For some reason, tweepy seems to like having all the parameters to work."""
     api.send_direct_message(user, screenname, userid, text)
 
-# Get our direct messages and count how many we have
+# Get direct messages and count how many were recieved
 direct_messages = api.direct_messages()
 dm_count = len(direct_messages)
-if ( dm_count == 0 ):
-    print "No direct messages were found...terminating"
-    time.sleep(2)
-    sys.exit()
-print "%s direct messages found" % dm_count
+# If there are none stop wasting CPU cycles
 if ( dm_count > 0 ):
+    print "%s direct messages found" % dm_count
     print "Parsing direct messages..."
     # Using these later to display the amount of tweets rejected and accepted.
     tweetCount = 0
@@ -66,5 +66,9 @@ if ( dm_count > 0 ):
     print "%s tweets rejected due to an @ mention\n" % rejectAtMention
     print "%s tweets rejected due to not containing the '&&' character\n" % rejectNoActivationChar
     print "Bot will now terminate. Goodbye!"
-    time.sleep(10)
-    sys.exit()
+    sleep(10)
+    exit()
+else:
+    print "No direct messages were found...terminating"
+    sleep(2)
+    exit()
