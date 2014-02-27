@@ -1,0 +1,2 @@
+Requires Python v2.7.6. http://www.python.org
+Requires tweepy Twitter API wrapper. https://www.github.com/tweepy/tweepy

@@ -1,4 +1,5 @@
 # Direct message to tweet bot, configured for anonymity
+# See license in readme
 # Developed by Ariel Mordoch
 # Requires the tweepy library. https://github.com/tweepy/tweepy
 
@@ -6,7 +7,7 @@
 from tweepy import *
 import sys
 import time
-# OAuth stuff first
+# OAuth stuff first. Add your API keys below.
 consumer_key = ''
 consumer_key_secret = ''
 access_token = ''

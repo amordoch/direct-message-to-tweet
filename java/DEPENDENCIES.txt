@@ -1,0 +1,2 @@
+Requires JDK 7 u51. 
+Requires twitter4j Twitter API wrapper (included).
