@@ -59,7 +59,7 @@ public class public_bot {
 							  } else {
 								  System.out.println("Tweet successful");
 								  Status status = twitter.updateStatus(text.substring(index + 2));
-								  Status notifySuccess = twitter.updateStatus("Tweet successful");
+								  Status notifySuccess = twitter.sendDirectMessage(message.getSenderId(), "Tweet successful");
 								  twitter.getDirectMessages().remove( message.getId() );
 							  }
 						  } else {
